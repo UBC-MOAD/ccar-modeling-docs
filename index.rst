@@ -1,21 +1,22 @@
-.. CCAR-Modeling documentation master file
+.. CCAR-Modeling documentation master file, created by
+   sphinx-quickstart on Tue Sep  9 18:25:54 2014.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
 
-.. _CCARModelingDocs:
+Welcome to CCAR-Modeling's documentation!
+=========================================
 
-***************************************
-CCAR Modeling Project Documentation
-***************************************
+Contents:
 
-This is a collection of documentation about the CCAR Modeling Project.
-
-
-.. _about:
-
-About the Project
-=================
+.. toctree::
+   :maxdepth: 2
 
 
- To come.
 
+Indices and tables
+==================
 
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
 

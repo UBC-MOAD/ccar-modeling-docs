@@ -19,6 +19,7 @@ Requirements for NEMO v3+
 FORTRAN compiler on ocean cluster is
 
 .. _G95: http://www.g95.org/downloads.shtml/
+
 .
 
 netCDF library is in the root, you can find them by:
@@ -46,31 +47,20 @@ Access the Code
 
 .
 
-* Follow the steps on NEMO's
-
-.. _User Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Advanced/Using-Subversion-svn/
-
-.
+* Follow the steps on NEMO's `User Guide`_.
 
 * Download NEMO v3.4. the name could be "nemo_v3_4" or "dev_v3_4_STABLE_2012".
 
-* One can also refers to a similar page on 
+* One can also refers to a similar page on `Salishsea-MEOPAR`_.
 
+* Windows users can also downloading the code by using `TortoiseSVN`_ to make a backup on your laptop.
+
+* The structure of directory can be viewed on NEMO's `Quick Start Guide`_.
+
+.. _User Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Advanced/Using-Subversion-svn/
 .. _Salishsea-MEOPAR: http://salishsea-meopar-docs.readthedocs.org/en/latest/code-notes/dev-notes/nemo-3.4.html/
-
-.
-
-* Windows users can also downloading the code by using
-
 .. _TortoiseSVN: http://tortoisesvn.net/
-
-to make a backup on your laptop.
-
-* The structure of directory can be viewed on NEMO's
-
 .. _Quick Start Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Basics/NEMO-Quick-Start-Guide#eztoc1190_1_1
-
-.
 
 Set Permissions
 ----------------

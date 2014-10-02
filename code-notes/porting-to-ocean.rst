@@ -59,7 +59,7 @@ Add ARCH file
       cd /ocean/yingkai/GEOTRACER/nemo_v3_4/NEMOGCM/ARCH # nemo_v3_4 is the name of your NEMO code
       vim arch-ocean.fcm
 
-The new ARCH :file:`arch-ocean.fcm` could be:
+New ARCH file: :file:`arch-ocean.fcm` could be::
 
   # generic gfortran compiler options for linux
   # NCDF_INC    netcdf include file
@@ -75,7 +75,6 @@ The new ARCH :file:`arch-ocean.fcm` could be:
   # MK          make
   # USER_INC    additional include files for the compiler,  e.g. -I<include dir>
   # USER_LIB    additional libraries to pass to the linker, e.g. -l<library>
-
   %NCDF_INC            **-I/usr/include**
   %NCDF_LIB            **-L/usr/lib -lnetcdff**
   %FC                  gfortran
@@ -89,6 +88,8 @@ The new ARCH :file:`arch-ocean.fcm` could be:
   %MK                  **make**
   %USER_INC            %NCDF_INC
   %USER_LIB            %NCDF_LIB
+
+Based on the new ARCH file, we add an new configure and build option.
 
 Test Each Components of NEMO
 ----------------

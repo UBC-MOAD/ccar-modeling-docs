@@ -18,7 +18,9 @@ Requirements for NEMO v3+
 
 FORTRAN compiler on ocean cluster is G95[http://www.g95.org/downloads.shtml]. 
 netCDF library is in the root, you can find them by:
+
   .. code-block:: bash
+  
       cd /usr/lib
 
 
@@ -28,6 +30,7 @@ Create Working Directories
 Create your working directories for NEMOv3.4
 
   .. code-block:: bash
+  
       mkdir -p /ocean/$NAME/GEOTRACER/
 
 Access the Code
@@ -44,6 +47,7 @@ Set Permissions
 ----------------
 
   .. code-block:: bash
+  
       cd /ocean/$NAME
       chmod -R a+x GEOTRACER
 
@@ -51,6 +55,7 @@ Add ARCH file
 ----------------
 
   .. code-block:: bash
+  
       cd /ocean/yingkai/GEOTRACER/nemo_v3_4/NEMOGCM/ARCH # nemo_v3_4 is the name of your NEMO code
       vim arch-ocean.fcm
 
@@ -87,7 +92,9 @@ The new ARCH :file:`arch-ocean.fcm` could be:
 
 Test Each Components of NEMO
 ----------------
+
 (coming soon)
+
 **GYRE**
 
 **LIM2**
@@ -103,7 +110,9 @@ FAQ & Notes for NEMO bugs
 **Building failed on limrhg.F90**
 
 You may see the message like:
+
   .. code-block:: bash
+  
       make: *** No rule to make target `limrhg.o', needed by `limdyn_2.o'.  Stop.
       
 When you are building a ORCA2_LIM, ORCA2_LIM3 or ORCA2_LIM_PISCES. 
@@ -112,7 +121,9 @@ This is because limrhg.F90 in LIM3 cannot link successfully to LIM2.
 Quirks
 
 Link limrhg.F90 manually:
+
   .. code-block:: bash
+  
       cd /ocean/yingkai/GEOTRACER/nemo_v3_4/NEMOGCM/NEMO/LIM_SRC_2
       rm -rf limrhg.F90 # delete the file
       ln -s ../LIM_SRC_3/limrhg.F90 # link to limrhg.F90 in LIM_SRC_3

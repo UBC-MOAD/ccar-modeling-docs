@@ -16,11 +16,7 @@ Requirements for NEMO v3+
 * FORTRAN90 compiler installed
 * netcdf installed
 
-FORTRAN compiler on ocean cluster is
-
-.. _G95: http://www.g95.org/downloads.shtml/
-
-.
+FORTRAN compiler on ocean cluster is `G95`_.
 
 netCDF library is in the root, you can find them by:
 
@@ -28,6 +24,7 @@ netCDF library is in the root, you can find them by:
   
       cd /usr/lib
 
+.. _G95: http://www.g95.org/downloads.shtml/
 
 Create Working Directories
 ----------------
@@ -41,11 +38,7 @@ Create your working directories for NEMO v3.4
 Access the Code
 ----------------
 
-* Register in NEMO's
-
-.. _Homepage: http://www.nemo-ocean.eu/
-
-.
+* Register in `NEMO's Homepage`_.
 
 * Follow the steps on NEMO's `User Guide`_.
 
@@ -55,12 +48,13 @@ Access the Code
 
 * Windows users can also downloading the code by using `TortoiseSVN`_ to make a backup on your laptop.
 
-* The structure of directory can be viewed on NEMO's `Quick Start Guide`_.
+* The structure of directory can be viewed on `NEMO Quick Start Guide`_.
 
+.. _NEMO's Homepage: http://www.nemo-ocean.eu/
 .. _User Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Advanced/Using-Subversion-svn/
 .. _Salishsea-MEOPAR: http://salishsea-meopar-docs.readthedocs.org/en/latest/code-notes/dev-notes/nemo-3.4.html/
 .. _TortoiseSVN: http://tortoisesvn.net/
-.. _Quick Start Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Basics/NEMO-Quick-Start-Guide#eztoc1190_1_1
+.. _NEMO Quick Start Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Basics/NEMO-Quick-Start-Guide#eztoc1190_1_1
 
 Set Permissions
 ----------------

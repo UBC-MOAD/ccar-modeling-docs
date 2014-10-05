@@ -4,7 +4,7 @@
 CCAR NEMO Modelling
 *******************
  
-Notes on Porting NEMO v3.4 on Ocean Cluster 
+Porting NEMO v3.4 on Ocean Cluster 
 =================
 
 Requirements for NEMO v3+
@@ -24,7 +24,7 @@ netCDF library is in the root, you can find them by:
   
       cd /usr/lib
 
-.. _G95: http://www.g95.org/downloads.shtml/
+.. _G95: http://www.g95.org/
 
 Create Working Directories
 ----------------
@@ -38,20 +38,20 @@ Create your working directories for NEMO v3.4
 Access the Code
 ----------------
 
-* Register in `NEMO's Homepage`_.
+* Register in `NEMO Homepage`_.
 
-* Follow the steps on NEMO's `User Guide`_.
+* Follow the steps on `NEMO User Guide`_.
 
-* Download NEMO v3.4. the name could be "nemo_v3_4" or "dev_v3_4_STABLE_2012".
+* Download NEMO v3.4. The package is "nemo_v3_4" or "dev_v3_4_STABLE_2012".
 
 * One can also refers to a similar page on `Salishsea-MEOPAR`_.
 
-* Windows users can also downloading the code by using `TortoiseSVN`_ to make a backup on your laptop.
+* Windows users can also access the code by through `TortoiseSVN`_ and set a backup on your laptop.
 
 * The structure of directory can be viewed on `NEMO Quick Start Guide`_.
 
-.. _NEMO's Homepage: http://www.nemo-ocean.eu/
-.. _User Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Advanced/Using-Subversion-svn/
+.. _NEMO Homepage: http://www.nemo-ocean.eu/
+.. _NEMO User Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Advanced/Using-Subversion-svn/
 .. _Salishsea-MEOPAR: http://salishsea-meopar-docs.readthedocs.org/en/latest/code-notes/dev-notes/nemo-3.4.html/
 .. _TortoiseSVN: http://tortoisesvn.net/
 .. _NEMO Quick Start Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Basics/NEMO-Quick-Start-Guide#eztoc1190_1_1
@@ -69,7 +69,7 @@ Add ARCH file
 
 .. code-block:: bash
   
-      cd /ocean/yingkai/GEOTRACER/nemo_v3_4/NEMOGCM/ARCH # nemo_v3_4 is the name of your NEMO code
+      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/ARCH # nemo_v3_4 is the name of your NEMO code
       vim arch-ocean.fcm
 
 New ARCH file: :file:`arch-ocean.fcm` could be::
@@ -89,8 +89,8 @@ New ARCH file: :file:`arch-ocean.fcm` could be::
   # USER_INC    additional include files for the compiler,  e.g. -I<include dir>
   # USER_LIB    additional libraries to pass to the linker, e.g. -l<library>
   # ============================================================================
-  %NCDF_INC            **-I/usr/include**
-  %NCDF_LIB            **-L/usr/lib -lnetcdff**
+  %NCDF_INC            -I/usr/include
+  %NCDF_LIB            -L/usr/lib -lnetcdff
   %FC                  gfortran
   %FCFLAGS             -fdefault-real-8 -O3 -funroll-all-loops -fcray-pointer
   %FFLAGS              %FCFLAGS
@@ -99,7 +99,7 @@ New ARCH file: :file:`arch-ocean.fcm` could be::
   %FPPFLAGS            -P -C -traditional
   %AR                  ar
   %ARFLAGS             -rs
-  %MK                  **make**
+  %MK                  make
   %USER_INC            %NCDF_INC
   %USER_LIB            %NCDF_LIB
 
@@ -112,17 +112,38 @@ Test Each Components of NEMO
 
 **GYRE**
 
+.. code-block:: bash
+  
+      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
+      ./makenemo -m ocean -n test_GYRE -r GYRE add_key "key_nosignedzero key_netcdf4"
+
 **LIM2**
+
+.. code-block:: bash
+  
+      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
+      /makenemo -m ocean -r ORCA2_LIM -n test_LIM2 add_key "key_nosignedzero key_netcdf4"
+      # del_key "key_mpp_mpi" is necessary for NEMO v3.6
 
 **LIM3**
 
+.. code-block:: bash
+  
+      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
+      /makenemo -m ocean -r ORCA2_LIM3 -n test_LIM3 add_key "key_nosignedzero key_netcdf4"
+
 **PISCES**
 
+.. code-block:: bash
+  
+      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
+      /makenemo -m ocean -r ORCA2_OFF_PISCES -n test_PISCES add_key "key_nosignedzero key_netcdf4"
 
 FAQ & Notes for NEMO bugs
 =================
 
-**Building failed on limrhg.F90**
+Building failed on limrhg.F90
+----------------
 
 You may see the message like:
 
@@ -133,13 +154,13 @@ You may see the message like:
 When you are building a ORCA2_LIM, ORCA2_LIM3 or ORCA2_LIM_PISCES. 
 This is because limrhg.F90 in LIM3 cannot link successfully to LIM2.
 
-* Quirks
+**Quirks**
 
 Link limrhg.F90 manually:
 
 .. code-block:: bash
   
-      cd /ocean/yingkai/GEOTRACER/nemo_v3_4/NEMOGCM/NEMO/LIM_SRC_2
+      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/NEMO/LIM_SRC_2
       rm -rf limrhg.F90 # delete the file
       ln -s ../LIM_SRC_3/limrhg.F90 # link to limrhg.F90 in LIM_SRC_3
       
@@ -147,6 +168,8 @@ Link limrhg.F90 manually:
 External Link
 =================
 (coming soon)
+[1] NEMO Home Page [http://www.nemo-ocean.eu/About-NEMO]
+[2] NEMO v3.4 Wiki [http://crystal.sca.uqam.ca/wiki/index.php/NEMO_3.4]
 
 
 

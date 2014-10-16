@@ -24,7 +24,9 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   code-notes/porting-to-ocean
+   code-notes/Porting_NEMOv34_ocean
+   code-notes/FAQ_Bugs
+   code-notes/External_Links
 
 .. include:: license_description.txt
  

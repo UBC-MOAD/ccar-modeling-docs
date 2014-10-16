@@ -22,7 +22,7 @@ Contents
 ========
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
 
    code-notes/Porting_NEMOv34_ocean
    code-notes/FAQ_Bugs

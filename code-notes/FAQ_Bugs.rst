@@ -1,8 +1,6 @@
-FAQ & Notes for NEMO bugs
-=================
+## FAQ & Notes for NEMO bugs
 
-Building failed on limrhg.F90
-----------------
+### Building failed on limrhg.F90
 
 You may see the message like:
 
@@ -30,8 +28,7 @@ You can also directly copy and replace the limrhg.F90 script on NEMO/LIM_SRC2:
       cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/NEMO/LIM_SRC_2
       cp -rf ../LIM_SRC_3/limrhg.F90 limrhg.F90 # copy in force
  
-FORTRAN runtime error for line 214 on nemogcm.f90
-----------------
+### FORTRAN runtime error for line 214 on nemogcm.f90
 
 You may see the message like:
 

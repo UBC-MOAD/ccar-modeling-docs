@@ -1,14 +1,13 @@
 .. _CCARModelingNEMO:
 
-*******************
-CCAR NEMO Modelling
-*******************
 
-Porting NEMO v3.4 on Ocean Cluster 
-=================
+# CCAR NEMO Modelling
 
-Requirements for NEMO v3+
-----------------
+
+## Porting NEMO v3.4 on Ocean Cluster 
+
+
+### Requirements for NEMO v3+
 
 * bash installed
 * perl installed

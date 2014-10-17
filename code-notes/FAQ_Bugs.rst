@@ -2,6 +2,26 @@
 FAQ & Notes for NEMO bugs
 **************************
 
+Some Tips
+=========
+
+* Directories in the namelist (usually 'cn_dir') must ennd with "/" 
+or the model cannot find the file in the target directory, and you may see
+error messages like:
+ 	
+.. code-block:: bash
+
+	  Fortran runtime error: namelist not terminated with / or &	
+	
+* The best way to set input files is to copy all of them to run directory (usually EXP00)
+
+.. code-block:: bash
+
+	  cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG/$YOUR_CONFIG/EXP00/
+      cp -rf $FORCINGS/*.nc ../EXP00
+	
+This is because some of the namelist do not have 'cn_dir' option for the input data. 
+	
 Known NEMO Bugs
 ================
 
@@ -44,15 +64,15 @@ You may see the message like:
   
       fortran runtime error, line 214 on nemogcm.f90
 
+When you are running all kinds of configurations contain ORCA2, LIM2 or LIM3 component.
+This is because namelists in ORCA2, LIM2, LIM3 reference configuration do not link successfully
+to your configuration. 
+
 The line 214 on nemogcm.f90 is:
 
 .. code-block:: fortran
   
       READ(numnam, namctl)
-	  
-When you are running nearly ORCA2_LIM, ORCA2_LIM3 or ORCA2_LIM_PISCES.
-This is because namelist, namelist_ice, namelist_ice_lim2, namelist_ice_lim3 in the 
-configuration directory do not link successfully to the reference configure type.
 
 **Quirks**
 
@@ -61,10 +81,10 @@ Copy and replace the namelist, namelist_ice, namelist_ice_lim2, namelist_ice_lim
 .. code-block:: bash
   
       cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG/$YOUR_CONFIG/EXP00/
-	  cp -rf ../../ORCA2_LIM/EXP00/namelist
+	  cp -rf ../../ORCA2_LIM/EXP00/namelist namelist
 	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim2 namelist_ice
-	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim2
-	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim3
+	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim2 namelist_ice_lim2
+	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim3 namelist_ice_lim3
 	  
 	  
 

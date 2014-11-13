@@ -22,11 +22,9 @@ Contents
 ========
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 2
 
-   code-notes/Porting_NEMOv34_ocean
-   code-notes/FAQ_Bugs
-   code-notes/External_Links
+   code-notes/Index
 
 .. include:: license_description.txt
  

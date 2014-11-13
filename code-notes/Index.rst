@@ -1,3 +1,9 @@
+.. _CCARModelingNEMO:
+
+*******************
+CCAR NEMO Modelling
+*******************
+
 .. toctree::
    :maxdepth: 3
 

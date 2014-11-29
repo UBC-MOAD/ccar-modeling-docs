@@ -110,7 +110,7 @@ In addition we need to modify two of the fortran codes.  First we need a version
 
 Second, the generic tracer source sink algorithm put the tracers into the Pacific... but our simulation is the Atlantic.  We need a different :kbd:`trcsms_my_trc.F90`.  This is also the file you should edit to simulate your traces of choice.
 
-,, code-block:: bash
+.. code-block:: bash
 
         cp ../../MyTrcGyreLobster/MY_SRC/trcsms_my_trc.F90 .
 
@@ -143,4 +143,4 @@ and then your job is done.  Results from the tracers are in: :kbd:`GYRE_5d_00010
 
 you can look at this using a notebook,  An example is at:
 
-/ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/LookAtTracers.ipynb
+:kbd:`/ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/LookAtTracers.ipynb`

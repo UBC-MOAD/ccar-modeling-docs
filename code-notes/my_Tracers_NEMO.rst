@@ -75,16 +75,22 @@ Inside :kbd:`EXP00` there are two namelist files: :kbd:`namelist_lobster` and :k
 By including the :kbd:`key_my_trc` flag we have added two tracers but have not defined them in the io file.  We need to add four lines.
 
 .. code-block:: xml
+
         <field id="TR_7"     description="Northern Source"                               unit="none" />
         <field id="TR_8"     description="Southern Source"                               unit="none" />
         <field ref="TR_7"     />
  	<field ref="TR_8"     />
 
-	 To get these lines and put them in the correct place, copy into your EXP00: /ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/iodef.xml
+	 To get these lines and put them in the correct place, copy into your :kbd:`EXP00`: 
 
-We also need to add these tracers to namelist_top to initialize them
+.. code-block:: bash
 
- .. code-block:: fortran
+/ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/iodef.xml
+
+We also need to add these tracers to :kbd:`namelist_top` to initialize them
+
+.. code-block:: fortran
+
     sn_tracer(7)   = 'TR_7'  , 'Southern Source            ',  'none      ' ,  .false.     ,  .false.
     sn_tracer(8)   = 'TR_8'  , 'Northern Source            ',  'none      ' ,  .false.     ,  .false.
 

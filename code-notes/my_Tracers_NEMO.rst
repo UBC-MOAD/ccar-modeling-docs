@@ -68,17 +68,17 @@ See :command:`./makenemo -h` for details of options and sub-commands.
 Running the Model
 =================
 
-For now, we will run the model in the EXP00 directory.  In future, once we have stabilized a few model configurations, we will move to running outside.
+For now, we will run the model in the :kbd:`EXP00` directory.  In future, once we have stabilized a few model configurations, we will move to running outside.
 
-Inside EXP00 there are two namelist files: namelist_lobster and namelist_top, two output definition files: iodef.xml and xmlio_server.def and three links.
+Inside :kbd:`EXP00` there are two namelist files: :kbd:`namelist_lobster` and :kbd:`namelist_top`, two output definition files: :kbd:`iodef.xml` and :kbd:`xmlio_server.def` and three links.
 
-By including the key_my_trc flag we have added two tracers but have not defined them in the io file.  We need to add four lines.
+By including the :kbd:`key_my_trc` flag we have added two tracers but have not defined them in the io file.  We need to add four lines.
 
-.. code-block:: bash
+.. code-block:: xml
         <field id="TR_7"     description="Northern Source"                               unit="none" />
         <field id="TR_8"     description="Southern Source"                               unit="none" />
-         <field ref="TR_7"     />
- 	 <field ref="TR_8"     />
+        <field ref="TR_7"     />
+ 	<field ref="TR_8"     />
 
 	 To get these lines and put them in the correct place, copy into your EXP00: /ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/iodef.xml
 

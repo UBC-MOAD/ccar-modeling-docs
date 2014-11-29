@@ -54,13 +54,13 @@ To create a this new configuration based on, `GYRE_LOBSTER`_ use:
 .. code-block:: bash
 
     cd NEMO-code/NEMOGCM/CONFIG
-    ./makenemo -r GYRE_LOBSTER -n MyTrcGyreLobster -m ocean add_key "key_netcdf4 key_nosignedzero key_my_trc"
+    ./makenemo -r GYRE_LOBSTER -n YourTrcGyreLobster -m ocean add_key "key_netcdf4 key_nosignedzero key_my_trc"
 
-That will use the existing :kbd:`GYRE_LOBSTER` configuration as a basis to build a new configuration called :kbd:`MyTrcGyreLobster` with the :kbd:`ocean` architecture definitions.
+That will use the existing :kbd:`GYRE_LOBSTER` configuration as a basis to build a new configuration called :kbd:`YourTrcGyreLobster` with the :kbd:`ocean` architecture definitions.
 The C Pre-Processor (CPP) keys :kbd:`key_netcdf4` and :kbd:`key_nosignedzero` will be added to configurations.  The key :kbd:`key_my_trc` added the code in TOP_SRC/MY_TRC to the compile.
 The resulting configuration,
 including a compiled and link NEMO executable,
-is located in :file:`NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster`.
+is located in :file:`NEMO-code/NEMOGCM/CONFIG/YourTrcGyreLobster`.
 
 See :command:`./makenemo -h` for details of options and sub-commands.
 
@@ -81,11 +81,12 @@ By including the :kbd:`key_my_trc` flag we have added two tracers but have not d
         <field ref="TR_7"     />
  	<field ref="TR_8"     />
 
-	 To get these lines and put them in the correct place, copy into your :kbd:`EXP00`: 
+To get these lines and put them in the correct place, copy into your :kbd:`EXP00` the :kbd:`iodef.xml` from the configuration :kbd:`MyTrcGyreLobster`
 
 .. code-block:: bash
 
-/ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/iodef.xml
+	cd YourGyreLobster/EXP00
+	cp ../../MyTrcGyreLobster/EXP00/iodef.xml .
 
 We also need to add these tracers to :kbd:`namelist_top` to initialize them
 
@@ -94,22 +95,37 @@ We also need to add these tracers to :kbd:`namelist_top` to initialize them
     sn_tracer(7)   = 'TR_7'  , 'Southern Source            ',  'none      ' ,  .false.     ,  .false.
     sn_tracer(8)   = 'TR_8'  , 'Northern Source            ',  'none      ' ,  .false.     ,  .false.
 
-To get these lines and put them in the correct place, copy into your EXP00: /ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/namelist_top
+To get these lines and put them in the correct place, copy into your :kbd:`EXP00` the :kbd:`namelist_top` from the configuration :kbd:`MyTrcGyreLobster`
 
-In addition we need to modify two of the fortran codes.  First we need a version of trcnam_trp.F90 that does not assume tracer damping has been set. To get the correct version, go up one directory and then into your MY_SRC directory.  Copy into your MY_SRC:  /ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/MY_SRC/trcnam_trp.F90
+.. code-block:: bash
 
-Second, the generic tracer source sink algorithm put the tracers into the Pacific... but our simulation is the Atlantic.  This is also the file you should edit to simulate your traces of choice.  Copy into your MY_SRC:  /ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/MY_SRC/trcsms_my_trc.F90
+	cp ../../MyTrcGyreLobster/EXP00/namelist_top .
+
+In addition we need to modify two of the fortran codes.  First we need a version of :kbd:`trcnam_trp.F90` that does not assume tracer damping has been set. Files that are changed from the base configuration go in your :kbd:`MY_SRC` directory.
+
+.. code-block:: bash
+
+	cd ../MY_SRC
+	cp ../../MyTrcGyreLobster/MY_SRC/trcnam_trp.F90 .
+
+Second, the generic tracer source sink algorithm put the tracers into the Pacific... but our simulation is the Atlantic.  We need a different :kbd:`trcsms_my_trc.F90`.  This is also the file you should edit to simulate your traces of choice.
+
+,, code-block:: bash
+
+        cp ../../MyTrcGyreLobster/MY_SRC/trcsms_my_trc.F90 .
 
 Now we need to remake the code.  Go back upto CONFIG and run:
 
 .. code-block:: bash
 
-   ./makenemo -n MyTrcGyreLobster
+   cd ../../
+   ./makenemo -n YourTrcGyreLobster
 
 Then we can run the code by going back into EXP00 and typing
 
 .. code-block:: bash
 
+    cd YourTrcGyreLobster/EXP00
     nice ./opa &
 
 After a good little while, you will see
@@ -123,9 +139,7 @@ After a good little while, you will see
     trc_rst_wri_my_trc: No specific variables to write on unit           1  at time         4319        4320
     trc_rst_wri_my_trc: No specific variables to write on unit           1  at time         4320        4320
 
-and then your job is done.  Results from the tracers are in:
-
-GYRE_5d_00010101_00011230_ptrc_T.nc
+and then your job is done.  Results from the tracers are in: :kbd:`GYRE_5d_00010101_00011230_ptrc_T.nc`
 
 you can look at this using a notebook,  An example is at:
 

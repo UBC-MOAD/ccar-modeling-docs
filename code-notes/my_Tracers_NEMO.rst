@@ -144,3 +144,12 @@ and then your job is done.  Results from the tracers are in: :kbd:`GYRE_5d_00010
 you can look at this using a notebook,  An example is at:
 
 :kbd:`/ocean/sallen/allen/research/MEOPAR/NEMO-code/NEMOGCM/CONFIG/MyTrcGyreLobster/EXP00/LookAtTracers.ipynb`
+
+ Making ORCA-Lim-PISCES with 2 Extra Tracers
+-------------------------------------------
+
+This is almost identical to above except:
+
+- In :kbd:`namelist_top` these are traces sn_tracer(25) and sn_tracer(26) as PISCES has more tracers.  Note, however, for some undetermined reason, they are still called TR_7 and TR_8.
+- You don't need to copy a new version of trcnam_trp.F90
+- and don't forget that you need to download all the forcing files for ORCA-LIM-PISCES

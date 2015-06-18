@@ -4,10 +4,19 @@
 CCAR NEMO Modelling
 *******************
 
-.. toctree::
-   :maxdepth: 3
+Quick Start Guide
+=================
 
-   Porting_NEMOv34_ocean
+.. toctree::
+   :maxdepth: 2
+
+   NEMO_ocean
    FAQ_Bugs
-   External_Links
+   
+NEMO Tracer scheme development
+==============================
+
+.. toctree::
+   :maxdepth: 2
+   
    my_Tracers_NEMO

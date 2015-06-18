@@ -1,9 +1,13 @@
 
-Porting NEMO v3.4 on Ocean Cluster 
+Work with NEMO in `ocean` 
 ===================
 
-Requirements for NEMO v3+
--------------------
+This section describes the steps to set up and test NEMO v3.4 on `ocean`.
+
+Create a Workspace
+------------------
+
+NEMO v3.4 requires
 
 * bash installed
 * perl installed
@@ -13,7 +17,7 @@ Requirements for NEMO v3+
 
 FORTRAN compiler on ocean cluster is `G95`_.
 
-netCDF library is in the root, you can find them by:
+The directory of netCDF library in `ocean` is:
 
 .. code-block:: bash
   
@@ -21,17 +25,14 @@ netCDF library is in the root, you can find them by:
 
 .. _G95: http://www.g95.org/
 
-Create Working Directories
-----------------
-
-Create your working directories for NEMO v3.4
+Create a space for NEMO v3.4 code and file I/O
 
 .. code-block:: bash
   
-      mkdir -p /ocean/$NAME/GEOTRACER/
+      mkdir -p /ocean/$NAME/GEOTRACES/
 
-Access the Code
-----------------
+Access to NEMO v3.4 code 
+------------------------
 
 * Register in `NEMO Homepage`_.
 
@@ -41,9 +42,9 @@ Access the Code
 
 * One can also refers to a similar page on `Salishsea-MEOPAR`_.
 
-* Windows users can also access the code by through `TortoiseSVN`_ and set a backup on your laptop.
+* Windows users can get the code by using `TortoiseSVN`_ for a backup.
 
-* The structure of directory can be viewed on `NEMO Quick Start Guide`_.
+* The tree structure of directory can be viewed on `NEMO Quick Start Guide`_.
 
 .. _NEMO Homepage: http://www.nemo-ocean.eu/
 .. _NEMO User Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Advanced/Using-Subversion-svn/
@@ -51,23 +52,24 @@ Access the Code
 .. _TortoiseSVN: http://tortoisesvn.net/
 .. _NEMO Quick Start Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Basics/NEMO-Quick-Start-Guide#eztoc1190_1_1
 
-Set Permissions
-----------------
-
+Change the permission of code directory
+-
 .. code-block:: bash
   
       cd /ocean/$NAME
-      chmod -R a+x GEOTRACER
+      chmod -R a+x GEOTRACES
 
-Add ARCH file
+Compile the code
 ----------------
+
+The arch file for NEMO
 
 .. code-block:: bash
   
-      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/ARCH # nemo_v3_4 is the name of your NEMO code
+      cd /ocean/$NAME/GEOTRACES/$CODEDIR/NEMOGCM/ARCH
       vim arch-ocean.fcm
 
-New ARCH file: :file:`arch-ocean.fcm` could be::
+:file:`arch-ocean.fcm
 
   # generic gfortran compiler options for linux
   # NCDF_INC    netcdf include file
@@ -98,41 +100,31 @@ New ARCH file: :file:`arch-ocean.fcm` could be::
   %USER_INC            %NCDF_INC
   %USER_LIB            %NCDF_LIB
 
-Based on the new ARCH file, we add an new configure and build option.
 
-Test Each Components of NEMO
-----------------
+ Testing a widely applied set-up in our team:
+ 
+.. code-block:: bash
+  
+      cd /ocean/$NAME/GEOTRACES/$CODEDIR/NEMOGCM/CONFIG
+      ./makenemo -m ocean -r ORCA2_OFF_PISCES -n case_name add_key "key_nosignedzero key_netcdf4"
+      
+Run the model
+--------------
 
-(coming soon)
-
-**GYRE**
+Download forcing files from `NEMO Homepage`_ and place all the files in:
 
 .. code-block:: bash
   
-      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
-      ./makenemo -m ocean -n test_GYRE -r GYRE add_key "key_nosignedzero key_netcdf4"
+      cd /ocean/$NAME/GEOTRACES/$CODEDIR/NEMOGCM/CONFIG/$case_name/EXP00
+      mv $forcing_file .
 
-**LIM2**
+.. _NEMO Homepage: http://www.nemo-ocean.eu/
 
-.. code-block:: bash
-  
-      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
-      /makenemo -m ocean -r ORCA2_LIM -n test_LIM2 add_key "key_nosignedzero key_netcdf4"
-      # del_key "key_mpp_mpi" is necessary for NEMO v3.6
-
-**LIM3**
+After changing NEMO's output in `iodef.xml` and other options in different namelists. We can run the model
 
 .. code-block:: bash
   
-      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
-      /makenemo -m ocean -r ORCA2_LIM3 -n test_LIM3 add_key "key_nosignedzero key_netcdf4"
-
-**PISCES**
-
-.. code-block:: bash
-  
-      cd /ocean/$NAME/GEOTRACER/nemo_v3_4/NEMOGCM/CONFIG
-      /makenemo -m ocean -r ORCA2_OFF_PISCES -n test_PISCES add_key "key_nosignedzero key_netcdf4"
-
-
-
+      ./opa &
+      
+The export information is saved in `ocean.output`.
+      

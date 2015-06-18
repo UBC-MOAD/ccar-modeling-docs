@@ -7,4 +7,4 @@ This section describes some common problems when work with NEMO
 .. toctree::
     :maxdepth: 2
 
-    2.1.FAQ_List
+    FAQ_List

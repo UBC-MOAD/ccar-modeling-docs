@@ -7,6 +7,8 @@ CCAR NEMO Modelling
 .. toctree::
    :maxdepth: 2
 
-    QuickStart
-    FAQ
-    TRC
+   QuickStart/index
+   TRC/index
+   FAQ
+
+

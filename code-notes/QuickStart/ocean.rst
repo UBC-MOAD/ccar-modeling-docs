@@ -54,7 +54,7 @@ Access to NEMO v3.4 code
 .. _NEMO Quick Start Guide: http://www.nemo-ocean.eu/Using-NEMO/User-Guides/Basics/NEMO-Quick-Start-Guide#eztoc1190_1_1
 
 Change the permission of code directory
--
+
 .. code-block:: bash
   
       cd /ocean/$NAME

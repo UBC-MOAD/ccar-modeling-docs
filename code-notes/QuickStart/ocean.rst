@@ -70,7 +70,7 @@ The arch file for NEMO
       cd /ocean/$NAME/GEOTRACES/$CODEDIR/NEMOGCM/ARCH
       vim arch-ocean.fcm
 
-:file:`arch-ocean.fcm`
+:file:`arch-ocean.fcm`::
 
   # generic gfortran compiler options for linux
   # NCDF_INC    netcdf include file

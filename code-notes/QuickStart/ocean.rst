@@ -1,11 +1,12 @@
 
-:kbd:`ocean` 
-===================
+************************
+Working on :kbd:`ocean`
+************************ 
 
 This section describes the steps to set up and test NEMO v3.4 on :kbd:`ocean` .
 
 Create a Workspace
-------------------
+==================
 
 NEMO v3.4 requires
 
@@ -32,7 +33,7 @@ Create a space for NEMO v3.4 code and file I/O
       mkdir -p /ocean/$NAME/GEOTRACES/
 
 Access to NEMO v3.4 code 
-------------------------
+========================
 
 * Register in `NEMO Homepage`_.
 
@@ -60,7 +61,7 @@ Change the permission of code directory
       chmod -R a+x GEOTRACES
 
 Compile the code
-----------------
+================
 
 The arch file for NEMO
 
@@ -108,8 +109,8 @@ The arch file for NEMO
       cd /ocean/$NAME/GEOTRACES/$CODEDIR/NEMOGCM/CONFIG
       ./makenemo -m ocean -r ORCA2_OFF_PISCES -n case_name add_key "key_nosignedzero key_netcdf4"
       
-Run the model
---------------
+Run your case
+=============
 
 Download forcing files from `NEMO Homepage`_ and place all the files in:
 

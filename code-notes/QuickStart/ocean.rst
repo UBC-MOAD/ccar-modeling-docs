@@ -100,9 +100,9 @@ The arch file for NEMO
   %MK                  make
   %USER_INC            %NCDF_INC
   %USER_LIB            %NCDF_LIB
+:
 
-
- Testing a widely applied set-up in our team:
+Configuring a testing case
  
 .. code-block:: bash
   

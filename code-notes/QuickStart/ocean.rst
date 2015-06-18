@@ -1,8 +1,8 @@
 
-Work with NEMO in `ocean` 
+:kbd:`ocean` 
 ===================
 
-This section describes the steps to set up and test NEMO v3.4 on `ocean`.
+This section describes the steps to set up and test NEMO v3.4 on :kbd:`ocean` .
 
 Create a Workspace
 ------------------
@@ -17,7 +17,7 @@ NEMO v3.4 requires
 
 FORTRAN compiler on ocean cluster is `G95`_.
 
-The directory of netCDF library in `ocean` is:
+The directory of netCDF library in :kbd:`ocean`  is:
 
 .. code-block:: bash
   
@@ -69,7 +69,7 @@ The arch file for NEMO
       cd /ocean/$NAME/GEOTRACES/$CODEDIR/NEMOGCM/ARCH
       vim arch-ocean.fcm
 
-:file:`arch-ocean.fcm
+:file:`arch-ocean.fcm`
 
   # generic gfortran compiler options for linux
   # NCDF_INC    netcdf include file
@@ -120,7 +120,7 @@ Download forcing files from `NEMO Homepage`_ and place all the files in:
 
 .. _NEMO Homepage: http://www.nemo-ocean.eu/
 
-After changing NEMO's output in `iodef.xml` and other options in different namelists. We can run the model
+After changing NEMO's output in :kbd:`ocean` and other options in different namelists. We can run the model
 
 .. code-block:: bash
   

@@ -22,7 +22,7 @@ And here is an example:
     The netCDF4 file should have the same longtitude/latitude dimensions as the file :kbd:`coordinate.nc` in your case. The time dimension should be
     "UNLIMITED" and *var_name* is the variable you want :kbd:`MY_TRC` to read. 
 
-    The arrange of the dimensions (For Python users) should be (TIME, LAT, LON) 
+    The arrangment of the dimensions (For Python users) should be (TIME, LAT, LON). 
 
 
 :file:`namelist_my_trc`::
@@ -43,8 +43,8 @@ And here is an example:
 Edit MY_TRC code
 ================
 
-* Go into the :kbd:`MY_SRC` of your case;
-* Copy :kbd:`trcini_my_trc.F90`, :kbd:`trcnam_my_trc.F90` and :kbd:`trcsms_my_trc.F90` from the code base of :kbd:`MY_TRC`.
+* Go to the :kbd:`MY_SRC` of your case;
+* Copy :kbd:`trcini_my_trc.F90`, :kbd:`trcnam_my_trc.F90` and :kbd:`trcsms_my_trc.F90` from the NEMO script.
 
 .. code-block:: bash
   

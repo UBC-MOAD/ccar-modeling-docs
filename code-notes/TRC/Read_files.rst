@@ -2,7 +2,7 @@
 Reading files in :kbd:`MY_TRC`
 ************************ 
 
-This section describes the steps to read an user-defined nerCDF file during the time stepping of :kbd:`MY_TRC` in NEMO v3.4.
+This section describes the steps to read an user-defined nerCDF4 file during the time stepping of :kbd:`MY_TRC` in NEMO v3.4.
 
 Edit the namelist
 ===============================
@@ -18,8 +18,8 @@ And here is an example:
 
 .. note::
 
-    The examples here and below are requiring a netCDF file in :kbd:`EXP00` which contains *nav_lat*, *nav_lon*, *time_counter* and *var_name*.
-    The netCDF file should have the same longtitude/latitude dimensions as the file :kbd:`coordinate.nc` in your case. The time dimension should be
+    The examples here and below are requiring a netCDF4 file in :kbd:`EXP00` which contains *nav_lat*, *nav_lon*, *time_counter* and *var_name*.
+    The netCDF4 file should have the same longtitude/latitude dimensions as the file :kbd:`coordinate.nc` in your case. The time dimension should be
     "UNLIMITED" and *var_name* is the variable you want :kbd:`MY_TRC` to read. 
 
     The arrange of the dimensions (For Python users) should be (TIME, LAT, LON) 
@@ -62,12 +62,11 @@ Add the following FORTRAN code blocks
    CONTAINS
 
    SUBROUTINE trc_ini_my_trc
-      IF( trc_sms_my_trc_alloc() /= 0 )   CALL ctl_stop( 'STOP', 'trc_ini_my_trc: unable to allocate MY_TRC arrays' )
+      IF(trc_sms_my_trc_alloc() /= 0) THEN
+         CALL ctl_stop('STOP', 'trc_ini_my_trc: unable to allocate MY_TRC arrays')
       ! Assign structure
-      CALL fld_fill( sf_var   , (/ sn_var /)   , cn_dir, 'trc_ini_my_trc', 'documentation' , 'namelist_section' )
-      ! sf_var ----- Structurfe defined at *sms* file
-      ! sn_var ----- Variable info defined in the namelist_section
-      IF( .NOT. ln_rsttr ) trn(:,:,:,jp_myt0:jp_myt1) = 0.
+      CALL fld_fill(sf_var, (/sn_var/), cn_dir, 'trc_ini_my_trc', 'documentation', 'namelist_section')
+      IF(.NOT. ln_rsttr) trn(:,:,:,jp_myt0:jp_myt1) = 0.
 
 :file:`trcnam_my_trc.F90`::
 
@@ -81,33 +80,51 @@ Add the following FORTRAN code blocks
    SUBROUTINE trc_nam_my_trc
       INTEGER :: numnatl
       NAMELIST/namelist_section/ cn_dir, sn_var
-      CALL ctl_opn( numnatl, 'namelist_my_trc', 'OLD', 'FORMATTED', 'SEQUENTIAL', 1, numout, .FALSE. )
-      REWIND( numnatl )
-      READ  ( numnatl, namelist_section )
+      CALL ctl_opn(numnatl, 'namelist_my_trc', 'OLD', 'FORMATTED', 'SEQUENTIAL', 1, numout, .FALSE.)
+      REWIND(numnatl)
+      READ  (numnatl, namelist_section)
 
 :file:`trcsms_my_trc.F90`::
 
-     IMPLICIT NONE
-     PUBLIC
+   IMPLICIT NONE
+   PUBLIC
 
-     PUBLIC   trc_sms_my_trc       ! called by trcsms.F90 module
-     PUBLIC   trc_sms_my_trc_alloc ! called by trcini_my_trc.F90 module
+   PUBLIC   trc_sms_my_trc       ! called by trcsms.F90 module
+   PUBLIC   trc_sms_my_trc_alloc ! called by trcini_my_trc.F90 module
 
-     CHARACTER(len=100), PUBLIC :: cn_dir = './'    ! Root directory for location of river file
-     TYPE(FLD_N) :: sn_var                          ! information about the Ba runoff file to be read
-     REAL(wp), ALLOCATABLE, DIMENSION(:,:) :: var   ! Array receives the value from netCDF
-     TYPE(FLD), ALLOCATABLE, DIMENSION(:) :: sf_var ! structure variable (PUBLIC for TAM)
+   CHARACTER(len=100), PUBLIC :: cn_dir = './'    ! Root directorY
+   TYPE(FLD_N) :: sn_var                          ! information about the file to be read
+   REAL(wp), ALLOCATABLE, DIMENSION(:,:) :: var   ! Array receives the value from netCDF
+   TYPE(FLD), ALLOCATABLE, DIMENSION(:) :: sf_var ! structure variable (PUBLIC for TAM)
 
-     CONTAINS
+   CONTAINS
 
-     SUBROUTINE trc_sms_my_trc( kt )
-      INTEGER, INTENT(in) :: kt   ! ocean e-step index
+   SUBROUTINE trc_sms_my_trc( kt )
+      INTEGER, INTENT(in) :: kt ! ocean e-step index
       INTEGER :: i, j
-      IF( nn_timing == 1 ) CALL timing_start('trc_sms_my_trc')
+      IF(nn_timing == 1) CALL timing_start('trc_sms_my_trc')
       !
-      CALL fld_read ( kt, 1, sf_var  )
+      CALL fld_read (kt, 1, sf_var)
       IF(lwp) WRITE(numout,*) 'did the reading'
       var(:, :) = sf_var(1)%fnow(:, :, 1)
+   END SUBROUTINE trc_sms_my_trc
+
+
+   INTEGER FUNCTION trc_sms_my_trc_alloc()
+      INTEGER :: ierror
+      ! ALLOCATE here the arrays specific to MY_TRC
+      ALLOCATE(var(jpi,jpj), STAT=trc_sms_my_trc_alloc)
+      ALLOCATE(sf_var(1), STAT=ierror)
+      ALLOCATE(var(jpi, jpj), STAT=trc_sms_my_trc_alloc)
+      ALLOCATE(sf_boundary(1), S
+      IF(ierror > 0) THEN
+         CALL ctl_stop('trc_sms_my_trc_alloc: unable to allocate');
+         RETURN
+      ENDIF
+      ALLOCATE(sf_var(1)%fnow(jpi, jpj, 1))
+      IF(trc_sms_my_trc_alloc /= 0) THEN
+         CALL ctl_warn('trc_sms_my_trc_alloc : failed to allocat')
+   END FUNCTION trc_sms_my_trc_alloc
 
 
 

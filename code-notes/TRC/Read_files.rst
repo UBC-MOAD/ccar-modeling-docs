@@ -117,8 +117,6 @@ Add the following FORTRAN code blocks
    INTEGER :: ierror
    ALLOCATE(var(jpi,jpj), STAT=trc_sms_my_trc_alloc)
    ALLOCATE(sf_var(1), STAT=ierror)
-   ALLOCATE(var(jpi, jpj), STAT=trc_sms_my_trc_alloc)
-   ALLOCATE(sf_boundary(1), S
    IF(ierror > 0) THEN
       CALL ctl_stop('trc_sms_my_trc_alloc: unable to allocate');
       RETURN

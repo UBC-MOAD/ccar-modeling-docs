@@ -100,7 +100,6 @@ The arch file for NEMO
   %MK                  make
   %USER_INC            %NCDF_INC
   %USER_LIB            %NCDF_LIB
-:
 
 Configuring a testing case
  
@@ -127,5 +126,5 @@ After changing NEMO's output in :kbd:`ocean` and other options in different name
   
       ./opa &
       
-The export information is saved in `ocean.output`.
+The export information is saved in :kbd:`ocean.output`.
       

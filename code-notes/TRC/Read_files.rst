@@ -1,11 +1,11 @@
 
-Reading files in :kbd:`MY_TRC`
+Reading netCDF4 file in :kbd:`MY_TRC`
 ************************ 
 
 This section describes the steps to read an user-defined nerCDF4 file during the time stepping of :kbd:`MY_TRC` in NEMO v3.4.
 
 Edit the namelist
-===============================
+=================
 
 Edit the namelist of :kbd:`MY_TRC`:
 
@@ -40,8 +40,8 @@ And here is an example:
 *  A section should end with :kbd:`/`
 
 
-Edit MY_TRC code
-================
+Edit :kbd:`MY_TRC` code
+=======================
 
 * Go to the :kbd:`MY_SRC` of your case;
 * Copy :kbd:`trcini_my_trc.F90`, :kbd:`trcnam_my_trc.F90` and :kbd:`trcsms_my_trc.F90` from the NEMO script.

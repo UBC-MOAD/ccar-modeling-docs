@@ -18,9 +18,9 @@ And here is an example:
 
 .. note::
 
-    The examples here and below are requiring a netCDF4 file in :kbd:`EXP00` which contains *nav_lat*, *nav_lon*, *time_counter* and *var_name*.
+    The examples here and below are requiring a netCDF4 file in :kbd:`EXP00` which contains **nav_lat**, **nav_lon**, **time_counter** and **var_name**.
     The netCDF4 file should have the same longtitude/latitude dimensions as the file :kbd:`coordinate.nc` in your case. The time dimension should be
-    "UNLIMITED" and *var_name* is the variable you want :kbd:`MY_TRC` to read. 
+    "UNLIMITED" and **var_name** is the variable you want :kbd:`MY_TRC` to read. 
 
     The arrangment of the dimensions (For Python users) should be (TIME, LAT, LON). 
 
@@ -35,8 +35,8 @@ And here is an example:
  cn_dir = './'
  /
 
-*  *frequency* is -12 means the variable is stored as monthly mean;
-*  *clim* is .true. with *yearly* means each month of the variable will repeat every year as a cycle
+*  **frequency** is -12 means the variable is stored as monthly mean;
+*  **clim** is .true. with **yearly** means each month of the variable will repeat every year as a cycle
 *  A section should end with :kbd:`/`
 
 

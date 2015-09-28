@@ -6,4 +6,5 @@ MY_TRC Code
     :maxdepth: 2
 
     my_Tracers_NEMO
+    NEMO_offline
     Read_files

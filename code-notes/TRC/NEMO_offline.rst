@@ -6,7 +6,7 @@ Running NEMO Offline using 5-day Files
 
 NEMO is designed to use yearly, monthly, weekly or daily files but Paul Myers' group is producing five-day (fday) files.
 
-We have re-written daymod.F90, dom_oce.F90 and fldread.F90 to handle fday, non-climatology files.  Also see the namelist.  All the files are commited as CindyOff in MY_SRC and EXP00.
+We have re-written daymod.F90, dom_oce.F90 and fldread.F90 to handle fday, non-climatology files.  Also see the namelist.  All the files are commited in configuration CindyOff in MY_SRC and EXP00.
 
 To run with fday files you need to:
 1) make unspecified data files.  NEMO uses these to look at how many variables are in each type of file.  You can make these by linking to any specific time file.  So, for example,

@@ -2,20 +2,19 @@
 Calculate emps with ANHA4 Output 
 ********************************** 
 
-This section describes the steps to calculate evaporation minus precipitation (emps) in MY_TRC offline simulation with ANHA4 forcing field in NEMO 3.4.   
- The approaches were tested under ANHA4-EXH001 with variables   
+This section describes the steps to calculate evaporation minus precipitation (emps) in MY_TRC offline simulation with ANHA4 forcing field in NEMO 3.4. The approaches were tested under ANHA4-EXH001 with variables   
 
 The equation for emps is:
+
     .. math:: 
     emp(:, :) = -\frac{iocesafl(:, :)*soce}{rday*(isssalin(:, :)+1.0E-16)}
 
 * iocesafl and isssalin are defined in icemod file
 * soce is 34.7, rday is 3600*4 
 
-A simple way to read iocesafl and isssalin in the model is using the file channels in namelist/&namdta_dyn. sn_emp can be used, and since 
-ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
+A simple way to read iocesafl and isssalin in the model is using the file channels in namelist/&namdta_dyn. sn_emp can be used, and since ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
 
-So in :file:`namelist`:, change the following:
+So in :file:`namelist`::
 
 !-----------------------------------------------------------------------
 &namdta_dyn        !   offline dynamics read in files                ("key_offline")
@@ -26,7 +25,7 @@ So in :file:`namelist`:, change the following:
     sn_eiw  = 'ANHA4-EXH001_icemod',    120    , 'isssalin',    .true.    , .false.,   'fday'  , ''       , ''
  /
 
-then copy:file:`namelist`: from OFF_SRC and on row 295, add the following:
+then copy:file:`datdyn.F90`: from OFF_SRC and on row 295, add the following:
 
  emp(:, :) = -1.0*emp(:, :)*34.7/(3600.0*4*(aeiw(:, :)+1.0e-16))
  emps(:,:) = emp(:,:)

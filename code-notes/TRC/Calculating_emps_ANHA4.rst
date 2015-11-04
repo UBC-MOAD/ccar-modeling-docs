@@ -15,7 +15,7 @@ The equation for emps is:
 
 A simple way to read iocesafl and isssalin in the model is using the file channels in namelist/&namdta_dyn. sn_emp can be used, and since ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
 
-In `namelist`, add the following
+In :kbd:`namelist`, add the following
 
 .. code-block:: bash
 
@@ -28,7 +28,7 @@ In `namelist`, add the following
      sn_eiw  = 'ANHA4-EXH001_icemod',    120    , 'isssalin',    .true.    , .false.,   'fday'  , ''       , ''
   /
 
-Then copy `datdyn.F90` from OFF_SRC and on row 295, add the following:
+Then copy :kbd:`datdyn.F90` from :kbd:`OFF_SRC` and on row 295, add the following:
 
 .. code-block:: fortran
 

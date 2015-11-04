@@ -14,6 +14,9 @@ The equation for emps is:
 * **isssalin** is Sea surface salinity, defined in icemod files.
 * **soce** is 34.7, **rday** is 3600*4, they are constants. 
 
+Use :kbd:`namelist/&namdta_dyn`
+===============================
+
 A simple way to read **iocesafl** and **isssalin** in the model is using the file channels in :kbd:`namelist/&namdta_dyn`. sn_emp can be used, and since ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
 
 In :kbd:`namelist`, add the following

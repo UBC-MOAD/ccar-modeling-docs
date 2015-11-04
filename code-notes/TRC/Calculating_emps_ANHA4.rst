@@ -6,27 +6,29 @@ This section describes the steps to calculate evaporation minus precipitation (e
 
 The equation for emps is:
 
-    .. math:: 
-    emp(:, :) = -\frac{iocesafl(:, :)*soce}{rday*(isssalin(:, :)+1.0E-16)}
+.. math::
+    
+ emp(:, :) = -\frac{iocesafl(:, :)*soce}{rday*(isssalin(:, :)+1.0E-16)}
 
 * iocesafl and isssalin are defined in icemod file
 * soce is 34.7, rday is 3600*4 
 
 A simple way to read iocesafl and isssalin in the model is using the file channels in namelist/&namdta_dyn. sn_emp can be used, and since ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
 
-So in :file:`namelist`::
+In `namelist`, add the following
 
-!-----------------------------------------------------------------------
-&namdta_dyn        !   offline dynamics read in files                ("key_offline")
-!-----------------------------------------------------------------------
-!            !  file name  ! frequency (hours) ! variable  ! time interp. !  clim  ! 'yearly'/ ! weights  ! rotation !
-!            !             !  (if <0  months)  !   name    !   (logical)  !  (T/F) ! 'monthly' ! filename ! pairing  !
-    sn_emp  = 'ANHA4-EXH001_icemod',    120    , 'iocesafl',    .true.    , .false.,   'fday'  , ''       , ''
-    sn_eiw  = 'ANHA4-EXH001_icemod',    120    , 'isssalin',    .true.    , .false.,   'fday'  , ''       , ''
- /
+ !-----------------------------------------------------------------------
+ &namdta_dyn        !   offline dynamics read in files                ("key_offline")
+ !-----------------------------------------------------------------------
+ !            !  file name  ! frequency (hours) ! variable  ! time interp. !  clim  ! 'yearly'/ ! weights  ! rotation !
+ !            !             !  (if <0  months)  !   name    !   (logical)  !  (T/F) ! 'monthly' ! filename ! pairing  !
+     sn_emp  = 'ANHA4-EXH001_icemod',    120    , 'iocesafl',    .true.    , .false.,   'fday'  , ''       , ''
+     sn_eiw  = 'ANHA4-EXH001_icemod',    120    , 'isssalin',    .true.    , .false.,   'fday'  , ''       , ''
+  /
 
-then copy:file:`datdyn.F90`: from OFF_SRC and on row 295, add the following:
+Then copy `datdyn.F90` from OFF_SRC and on row 295, add the following:
+
+.. code-block:: fortran
 
  emp(:, :) = -1.0*emp(:, :)*34.7/(3600.0*4*(aeiw(:, :)+1.0e-16))
  emps(:,:) = emp(:,:)
-

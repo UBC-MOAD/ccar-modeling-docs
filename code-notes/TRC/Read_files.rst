@@ -54,8 +54,9 @@ Edit :kbd:`MY_TRC` code
 
 Add the following FORTRAN code blocks
 
-:file:`trcini_my_trc.F90`::
+In :kbd:`trcini_my_trc.F90`, change the following:
 
+.. code-block:: fortran
  IMPLICIT NONE
  PRIVATE
 
@@ -86,8 +87,9 @@ Add the following FORTRAN code blocks
    READ  (numnatl, namelist_section)
  END SUBROUTINE trc_nam_my_trc
 
-:file:`trcsms_my_trc.F90`::
+In :kbd:`trcsms_my_trc.F90`, add the following:
 
+.. code-block:: fortran
  IMPLICIT NONE
  PUBLIC
 

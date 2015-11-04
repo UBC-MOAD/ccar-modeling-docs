@@ -2,7 +2,7 @@
 Calculate emps with ANHA4 Output 
 ********************************** 
 
-This section describes the steps to calculate evaporation minus precipitation (emps) in kbd:`MY_TRC` offline simulation with ANHA4 forcing field in NEMO 3.4. The approaches were tested under ANHA4-EXH001 with surface ocean salt flux and sea surface salinity.   
+This section describes the steps to calculate evaporation minus precipitation (emps) in :kbd:`MY_TRC` offline simulation with ANHA4 forcing field in NEMO 3.4. The approaches were tested under ANHA4-EXH001 with surface ocean salt flux and sea surface salinity.   
 
 The equation for emps is:
 
@@ -14,7 +14,7 @@ The equation for emps is:
 * **isssalin** is Sea surface salinity, defined in icemod files.
 * **soce** is 34.7, **rday** is 3600*4, they are constants. 
 
-A simple way to read **iocesafl** and **isssalin** in the model is using the file channels in kbd:`namelist/&namdta_dyn`. sn_emp can be used, and since ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
+A simple way to read **iocesafl** and **isssalin** in the model is using the file channels in :kbd:`namelist/&namdta_dyn`. sn_emp can be used, and since ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
 
 In :kbd:`namelist`, add the following
 

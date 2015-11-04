@@ -2,7 +2,8 @@
 Reading netCDF4 file in :kbd:`MY_TRC`
 ************************ 
 
-This section describes the steps to read an user-defined nerCDF4 file during the time stepping of :kbd:`MY_TRC` in NEMO v3.4.
+This section describes the steps to read an user-defined nerCDF4 file during the time stepping of :kbd:`MY_TRC` in NEMO v3.4. This is tested on ORCA 2 degree configuration. 
+Similar approaches can be done in ANHA4 cases.   
 
 Edit the namelist
 =================
@@ -35,9 +36,9 @@ And here is an example:
  cn_dir = './'
  /
 
-*  **frequency** is -12 means the variable is stored as monthly mean;
-*  **clim** is .true. with **yearly** means each month of the variable will repeat every year as a cycle
-*  A section should end with :kbd:`/`
+*  **frequency** is the reading frequency of the variable in time dimension
+*  **clim** is the flag of file batching ...
+*  A section should be ended with :kbd:`/`
 
 
 Edit :kbd:`MY_TRC` code
@@ -48,8 +49,8 @@ Edit :kbd:`MY_TRC` code
 
 .. code-block:: bash
   
-      cd $your_case/MY_SRC
-      cp $NEMO-CODE/NEMOGCM/NEMO/TOP_SRC/MY_TRC/trc*_my_trc.F90 .
+      cd ${your_case}/MY_SRC
+      cp ${NEMO-CODE}/NEMOGCM/NEMO/TOP_SRC/MY_TRC/trc*_my_trc.F90 .
 
 Add the following FORTRAN code blocks
 
@@ -66,7 +67,6 @@ Add the following FORTRAN code blocks
       CALL ctl_stop('STOP', 'trc_ini_my_trc: unable to allocate MY_TRC arrays')
    ! Assign structure
    CALL fld_fill(sf_var, (/sn_var/), cn_dir, 'trc_ini_my_trc', 'docs', 'namelist_section')
-   IF(.NOT. ln_rsttr) trn(:,:,:,jp_myt0:jp_myt1) = 0.
  END SUBROUTINE trc_ini_my_trc
 
 :file:`trcnam_my_trc.F90`::
@@ -107,7 +107,6 @@ Add the following FORTRAN code blocks
    IF(nn_timing == 1) CALL timing_start('trc_sms_my_trc')
    !
    CALL fld_read (kt, 1, sf_var)
-   IF(lwp) WRITE(numout,*) 'did the reading'
    var(:, :) = sf_var(1)%fnow(:, :, 1)
    ! More code ...
  END SUBROUTINE trc_sms_my_trc
@@ -125,6 +124,8 @@ Add the following FORTRAN code blocks
    IF(trc_sms_my_trc_alloc /= 0) THEN
       CALL ctl_warn('trc_sms_my_trc_alloc : failed to allocat')
  END FUNCTION trc_sms_my_trc_alloc
+ 
+ For 4 dimension variables (time dimension has been subtrackted by keyword "frequency" in the namelist): var(:, :, :) = sf_var(1)%fnow(:, :, :)
 
 
 

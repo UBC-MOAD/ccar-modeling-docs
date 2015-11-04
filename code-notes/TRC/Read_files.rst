@@ -57,6 +57,7 @@ Add the following FORTRAN code blocks
 In :kbd:`trcini_my_trc.F90`, change the following:
 
 .. code-block:: fortran
+
  IMPLICIT NONE
  PRIVATE
 
@@ -70,7 +71,9 @@ In :kbd:`trcini_my_trc.F90`, change the following:
    CALL fld_fill(sf_var, (/sn_var/), cn_dir, 'trc_ini_my_trc', 'docs', 'namelist_section')
  END SUBROUTINE trc_ini_my_trc
 
-:file:`trcnam_my_trc.F90`::
+:kbd:`trcnam_my_trc.F90`
+
+.. code-block:: fortran
 
  IMPLICIT NONE
  PRIVATE
@@ -90,6 +93,7 @@ In :kbd:`trcini_my_trc.F90`, change the following:
 In :kbd:`trcsms_my_trc.F90`, add the following:
 
 .. code-block:: fortran
+
  IMPLICIT NONE
  PUBLIC
 
@@ -127,7 +131,7 @@ In :kbd:`trcsms_my_trc.F90`, add the following:
       CALL ctl_warn('trc_sms_my_trc_alloc : failed to allocat')
  END FUNCTION trc_sms_my_trc_alloc
  
- For 4 dimension variables (time dimension has been subtrackted by keyword "frequency" in the namelist): var(:, :, :) = sf_var(1)%fnow(:, :, :)
+For 4 dimension variables (time dimension has been subtrackted by keyword "frequency" in the namelist): var(:, :, :) = sf_var(1)%fnow(:, :, :)
 
 
 

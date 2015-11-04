@@ -8,7 +8,7 @@ The equation for emps is:
 
 .. math::
     
- emp(:, :) = -\frac{iocesafl(:, :)*soce}{rday*(isssalin(:, :)+1.0E-16)}
+ \mathrm{emp(:, :) = -\frac{iocesafl(:, :)*soce}{rday*(isssalin(:, :)+1.0E^{-16})}}
 
 * iocesafl and isssalin are defined in icemod file
 * soce is 34.7, rday is 3600*4 
@@ -16,6 +16,8 @@ The equation for emps is:
 A simple way to read iocesafl and isssalin in the model is using the file channels in namelist/&namdta_dyn. sn_emp can be used, and since ANHA4-EXH001 does not have "key_eiv", here we also choose sn_eiw.  
 
 In `namelist`, add the following
+
+.. code-block:: bash
 
  !-----------------------------------------------------------------------
  &namdta_dyn        !   offline dynamics read in files                ("key_offline")

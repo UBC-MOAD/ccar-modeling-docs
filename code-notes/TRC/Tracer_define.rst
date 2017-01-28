@@ -9,11 +9,15 @@ Edit :kbd:`MY_TRC` files
 
 The following files are useful when adding tracers into the model.
 
- | Script                 |    Location   | Functionality                     |
- |:----------------------:|:-------------:|:---------------------------------:|
- |:kbd:`par_my_trc.F90`   |:kbd:`TOP_SRC` | Claim the number of tracers       | 
- |:kbd:`trcsms_my_trc.F90`|:kbd:`TOP_SRC` | Initialization & parameterization |
- |:kbd:`trcnxt.F90`       |:kbd:`TOP_SRC` | Boundary conditions               |
++--------------------------+----------------+----------------------------------+
+| Script                   | Location       | Functionality                    |
++==========================+================+==================================+
+| :kbd:`par_my_trc.F90`    | :kbd:`TOP_SRC` | Claim the number of tracers      |
++--------------------------+----------------+----------------------------------+
+| :kbd:`trcsms_my_trc.F90` | :kbd:`TOP_SRC` | Initialization & parameterization|
++--------------------------+----------------+----------------------------------+
+| :kbd:`trcnxt.F90`        | :kbd:`TOP_SRC` | Boundary conditions              |
++--------------------------+----------------+----------------------------------+
 
 An ideal way to edit these files is copying them to :kbd:`MY_SRC` and without changing things in the original scripts. 
 
@@ -46,8 +50,8 @@ the first tracer is indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`. :kbd:`MY_TRC`
  ! Print surface tracer values to check
  WRITE(*, *) 'trn@Lena estuary', trn(600, 450, 1, jpmyt1)
 
-:kbd:`trcsms_my_trc.F90` is an important file to work on. In the example above, `kt` is the timestep, `trn` is the storage of tracer value and `tra`
-is the "delta" term. (need more explaination) 
+:kbd:`trcsms_my_trc.F90` is an important file to work on. In the example above, :kbd:`kt` is the timestep, :kbd:`trn` is the storage of tracer value and :kbd:`tra`
+is the "delta" term. (need more explainations) 
  
 :file:`trcnxt.F90`::
 
@@ -105,11 +109,11 @@ In :kbd:`iodef.xml`, tracer values are defined in :kbd:`ptrc_T` group, and the c
 
 :file:`namelist_top`::
 
- !                !    name   !           title of the field              ! initial data ! initial data ! save   !
- !                !           !                                           !  units       ! from file    ! or not ! 
- !                !           !                                           !              ! or not       !        !
-    sn_tracer(1)  = 'T01'     , 'My tracer 01'                            ,  'none'      ,  .false.     ,  .true.
-    sn_tracer(2)  = 'T02'     , 'My tracer 02'                            ,  'none'      ,  .false.     ,  .true.
+ !                !    name   ! title of the field ! initial data ! initial data ! save   !
+ !                !           !                    !  units       ! from file    ! or not ! 
+ !                !           !                    !              ! or not       !        !
+    sn_tracer(1)  = 'T01'     , 'My tracer 01'     ,  'none'      ,  .false.     ,  .true.
+    sn_tracer(2)  = 'T02'     , 'My tracer 02'     ,  'none'      ,  .false.     ,  .true.
  /
 
 The original :kbd:`namelist_top` contains many existing :kbd:`sn_tracer(#)` fields, they were set-up for PISCES and can be deleted.   

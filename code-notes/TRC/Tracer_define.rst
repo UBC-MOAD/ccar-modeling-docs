@@ -77,6 +77,7 @@ Edit I/O options and namelist
 :kbd:`namelist_top` and :kbd:`iodef.xml` should be modified for exporting the simulated tracer values: 
 
 :file:`iodef.xml`::
+
  <!-- In ptrc_T scope -->
  <group id="ptrc_T" axis_ref="deptht" grid_ref="grid_T">
        <!-- My Stupid Tracer -->

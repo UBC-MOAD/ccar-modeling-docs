@@ -9,11 +9,11 @@ Edit :kbd:`MY_TRC` files
 
 The following files are useful when adding tracers into the model.
 
-| Script                 |    Location   | Functionality |
-|:----------------------:|:-------------:|:-------------:|
-|:kbd:`par_my_trc.F90`   |:kbd:`TOP_SRC` | Claim the number of tracers       | 
-|:kbd:`trcsms_my_trc.F90`|:kbd:`TOP_SRC` | Initialization & parameterization |
-|:kbd:`trcnxt.F90`       |:kbd:`TOP_SRC` | Boundary conditions               |
+ | Script                 |    Location   | Functionality                     |
+ |:----------------------:|:-------------:|:---------------------------------:|
+ |:kbd:`par_my_trc.F90`   |:kbd:`TOP_SRC` | Claim the number of tracers       | 
+ |:kbd:`trcsms_my_trc.F90`|:kbd:`TOP_SRC` | Initialization & parameterization |
+ |:kbd:`trcnxt.F90`       |:kbd:`TOP_SRC` | Boundary conditions               |
 
 An ideal way to edit these files is copying them to :kbd:`MY_SRC` and without changing things in the original scripts. 
 
@@ -31,8 +31,8 @@ Here some examples are provided, but the real editing depends on the modelling g
    INTEGER, PUBLIC, PARAMETER ::   jpmyt1 = jp_lm + 1     !: 1st MY_TRC tracer
    INTEGER, PUBLIC, PARAMETER ::   jpmyt2 = jp_lm + 2     !: 1st MY_TRC tracer
  
-The example above set user defined tracer as `.TRUE.` and claimed two tracers with index `jpmyt1` and `jpmyt2`. So during the simulation,
-the first tracer is indexed as: `trn(lon, lat, dep, jpmyt1)`. :kbd:`MY_TRC` scripts explained that they were designed for "passive tracers".
+The example above set user defined tracer as :kbd:`.TRUE.` and claimed two tracers with index :kbd:`jpmyt1` and :kbd:`jpmyt2`. So during the simulation,
+the first tracer is indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`. :kbd:`MY_TRC` scripts explained that they were designed for "passive tracers".
  
 :file:`trcsms_my_trc.F90`::
 
@@ -45,8 +45,8 @@ the first tracer is indexed as: `trn(lon, lat, dep, jpmyt1)`. :kbd:`MY_TRC` scri
  tra(:, :, 1, jpmyt1) = tra(:, :, 1, jpmyt1) + delta
  ! Print surface tracer values to check
  WRITE(*, *) 'trn@Lena estuary', trn(600, 450, 1, jpmyt1)
- 
- :kbd:`trcsms_my_trc.F90` is an important file to work on. In the example above, `kt` is the timestep, `trn` is the storage of tracer value and `tra`
+
+:kbd:`trcsms_my_trc.F90` is an important file to work on. In the example above, `kt` is the timestep, `trn` is the storage of tracer value and `tra`
 is the "delta" term. (need more explaination) 
  
 :file:`trcnxt.F90`::
@@ -59,7 +59,7 @@ is the "delta" term. (need more explaination)
                tra(:, :, jk, jn) = 0.
             END WHERE
          ENDDO
-      ENDDO
+       ENDDO
 
 The above example is the open boundary condition for our group, and another part of it is to preserve tracer values at the boundary to avoid 
 the advection from those "zeros". A typical way is to hold values in the initial condition.
@@ -69,7 +69,7 @@ the advection from those "zeros". A typical way is to hold values in the initial
     It is always necessary to read initial/boundary conditions and other physical fields when simulating the tracer, this part of information
     is in `here`_
     
-.. _here: http://www.baidu.com
+.. _here: http://ccar-modeling-documentation.readthedocs.io/en/latest/code-notes/TRC/Read_files.html
     
 Edit I/O options and namelist
 =============================
@@ -100,7 +100,7 @@ Edit I/O options and namelist
       </group>
  </file_definition>
 
-In :kbd:`iodef.xml`, tracer values are defined in `ptrc_T` group, and the common export frequencies are 5-day and monthly. 
+In :kbd:`iodef.xml`, tracer values are defined in :kbd:`ptrc_T` group, and the common export frequencies are 5-day and monthly. 
 
 :file:`namelist_top`::
 
@@ -111,7 +111,7 @@ In :kbd:`iodef.xml`, tracer values are defined in `ptrc_T` group, and the common
     sn_tracer(2)  = 'T02'     , 'My tracer 02'                            ,  'none'      ,  .false.     ,  .true.
  /
 
-The original :kbd:`namelist_top` contains many existing `sn_tracer(#)` fields, they were set-up for PISCES and can be deleted.   
+The original :kbd:`namelist_top` contains many existing :kbd:`sn_tracer(#)` fields, they were set-up for PISCES and can be deleted.   
 
 
 

@@ -12,7 +12,7 @@ The equation for emps is:
 
 * **iocesafl** is the salt flux at ocean surface, defined in icemod files. 
 * **isssalin** is Sea surface salinity, defined in icemod files.
-* **soce** is 34.7, **rday** is 3600*4, they are constants. 
+* **soce** is 34.7, **rday** is 3600*24, they are constants. 
 
 Use :kbd:`namelist/&namdta_dyn`
 ===============================
@@ -36,5 +36,5 @@ Then copy :kbd:`datdyn.F90` from :kbd:`OFF_SRC` and on row 295, add the followin
 
 .. code-block:: fortran
 
- emp(:, :) = -1.0*emp(:, :)*34.7/(3600.0*4*(aeiw(:, :)+1.0e-16))
+ emp(:, :) = -1.0*emp(:, :)*34.7/(3600.0*24*(aeiw(:, :)+1.0e-16))
  emps(:,:) = emp(:,:)

@@ -8,4 +8,5 @@ MY_TRC Code
     my_Tracers_NEMO
     NEMO_offline
     Read_files
+    Tracer_define
     Calculate_emps_ANHA4

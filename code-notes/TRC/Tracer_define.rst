@@ -19,9 +19,9 @@ The following files are useful when adding tracers into the model.
 | :kbd:`trcnxt.F90`        | :kbd:`TOP_SRC` | Boundary conditions              |
 +--------------------------+----------------+----------------------------------+
 
-An ideal way to edit these files is copying them to :kbd:`MY_SRC` and without changing things in the original scripts. 
-
-Here some examples are provided, but the real editing depends on the modelling goal.
+An ideal way to edit these files is copying them to :kbd:`MY_SRC` and without changing things in the original folder. 
+Here some examples are provided, but the real editing depends on the type of tracer. The OPA Tracer Mannuel explained 
+that :kbd:`MY_TRC` is designed for "passive tracers".
 
 :file:`par_my_trc.F90`::
 
@@ -36,7 +36,7 @@ Here some examples are provided, but the real editing depends on the modelling g
    INTEGER, PUBLIC, PARAMETER ::   jpmyt2 = jp_lm + 2     !: 1st MY_TRC tracer
  
 The example above set user defined tracer as :kbd:`.TRUE.` and claimed two tracers with index :kbd:`jpmyt1` and :kbd:`jpmyt2`. So during the simulation,
-the first tracer is indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`. :kbd:`MY_TRC` scripts explained that they were designed for "passive tracers".
+the first tracer can be indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`. 
  
 :file:`trcsms_my_trc.F90`::
 
@@ -51,7 +51,7 @@ the first tracer is indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`. :kbd:`MY_TRC`
  WRITE(*, *) 'trn@Lena estuary', trn(600, 450, 1, jpmyt1)
 
 :kbd:`trcsms_my_trc.F90` is an important file to work on. In the example above, :kbd:`kt` is the timestep, :kbd:`trn` is the storage of tracer value and :kbd:`tra`
-is the "delta" term. (need more explainations) 
+is the "delta" term. (this block needs more explainations) 
  
 :file:`trcnxt.F90`::
 
@@ -78,7 +78,7 @@ the advection from those "zeros". A typical way is to hold values in the initial
 Edit I/O options and namelist
 =============================
 
-:kbd:`namelist_top` and :kbd:`iodef.xml` should be modified for exporting the simulated tracer values: 
+:kbd:`namelist_top` and :kbd:`iodef.xml` should be modified for exporting the simulated tracer values. Both of the files are located in :kbd:`EXP00`. 
 
 :file:`iodef.xml`::
 
@@ -116,7 +116,6 @@ In :kbd:`iodef.xml`, tracer values are defined in :kbd:`ptrc_T` group, and the c
     sn_tracer(2)  = 'T02'     , 'My tracer 02'     ,  'none'      ,  .false.     ,  .true.
  /
 
-The original :kbd:`namelist_top` contains many existing :kbd:`sn_tracer(#)` fields, they were set-up for PISCES and can be deleted.   
-
+The original :kbd:`namelist_top` contains many existing :kbd:`sn_tracer(#)` fields, they were set-up for PISCES and can be deleted.
 
 

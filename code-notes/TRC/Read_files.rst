@@ -1,21 +1,21 @@
 
 Reading netCDF4 file in :kbd:`MY_TRC`
-************************ 
+************************************* 
 
-This section describes the steps to read an user-defined nerCDF4 file during the time stepping of :kbd:`MY_TRC` in NEMO v3.4. This is tested on ORCA 2 degree configuration. 
-Similar approaches can be done in ANHA4 cases.   
+This section describes the ways to read an user-defined nerCDF4 file during the time stepping of :kbd:`MY_TRC` in NEMO 3.4.
 
-Edit the namelist
-=================
+Through NEMO's existing file channel
+====================================
 
-Edit the namelist of :kbd:`MY_TRC`:
+By replacing the variable information in :kbd:`namelist/&namdta_dyn` to your own, the tracer model can read your files during the simulation. 
+An example of it can be found in `here`_. 
+`(this section needs more explainations)`
 
-.. code-block:: bash
-  
-      cd $your_case/EXP00/
-      vim namelist_my_trc
+.. _here: http://ccar-modeling-documentation.readthedocs.io/en/latest/code-notes/TRC/Calculate_emps_ANHA4.html#use-namelist-namdta-dyn
 
-And here is an example:
+By creating new namelist
+========================
+
 
 .. note::
 
@@ -26,7 +26,11 @@ And here is an example:
     The arrangment of the dimensions (For Python users) should be (TIME, LAT, LON). 
 
 
-:file:`namelist_my_trc`::
+
+Create :kbd:`namelist_my_trc`
+-------------------------------------
+
+In :kbd:`$your_case/EXP00/`, create the file :file:`namelist_my_trc`::
 
  &namelist_section
  !,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
@@ -41,20 +45,13 @@ And here is an example:
 *  A section should be ended with :kbd:`/`
 
 
-Edit :kbd:`MY_TRC` code
-=======================
+Edit :kbd:`MY_TRC` scripts
+---------------------------
 
-* Go to the :kbd:`MY_SRC` of your case;
-* Copy :kbd:`trcini_my_trc.F90`, :kbd:`trcnam_my_trc.F90` and :kbd:`trcsms_my_trc.F90` from the NEMO script.
+The structure and access information can be added in :kbd:`trcini_my_trc.F90` and :kbd:`trcnam_my_trc.F90`. When the variable is read,
+it can be used in :kbd:`trcsms_my_trc.F90`.
 
-.. code-block:: bash
-  
-      cd ${your_case}/MY_SRC
-      cp ${NEMO-CODE}/NEMOGCM/NEMO/TOP_SRC/MY_TRC/trc*_my_trc.F90 .
-
-Add the following FORTRAN code blocks
-
-In :kbd:`trcini_my_trc.F90`, change the following:
+In :kbd:`trcini_my_trc.F90`, assign the structure of your file by :kbd:`fld_fill`. 
 
 .. code-block:: fortran
 
@@ -71,7 +68,9 @@ In :kbd:`trcini_my_trc.F90`, change the following:
    CALL fld_fill(sf_var, (/sn_var/), cn_dir, 'trc_ini_my_trc', 'docs', 'namelist_section')
  END SUBROUTINE trc_ini_my_trc
 
-:kbd:`trcnam_my_trc.F90`
+
+In :kbd:`trcnam_my_trc.F90`, read the variable through :kbd:`ctl_opn`. The name of the namelist :kbd:`namelist_my_trc`
+should be consistent with the one created in the section above.  
 
 .. code-block:: fortran
 
@@ -90,7 +89,7 @@ In :kbd:`trcini_my_trc.F90`, change the following:
    READ  (numnatl, namelist_section)
  END SUBROUTINE trc_nam_my_trc
 
-In :kbd:`trcsms_my_trc.F90`, add the following:
+:kbd:`trcsms_my_trc.F90` call the two scripts above and allocates the array.
 
 .. code-block:: fortran
 
@@ -131,7 +130,7 @@ In :kbd:`trcsms_my_trc.F90`, add the following:
       CALL ctl_warn('trc_sms_my_trc_alloc : failed to allocat')
  END FUNCTION trc_sms_my_trc_alloc
  
-For 4 dimension variables (time dimension has been subtrackted by keyword "frequency" in the namelist): var(:, :, :) = sf_var(1)%fnow(:, :, :)
+For 4 dimension variables (time dimension has been subtrackted by keyword "frequency" in the namelist): var(:, :, :) = sf_var(1)%fnow(:, :, :).
 
 
 

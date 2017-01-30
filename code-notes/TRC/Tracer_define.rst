@@ -38,7 +38,8 @@ the first tracer can be indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`.
    INTEGER, PUBLIC, PARAMETER ::   jpmyt1 = jp_lm + 1 !: 1st MY_TRC tracer
    INTEGER, PUBLIC, PARAMETER ::   jpmyt2 = jp_lm + 2 !: 1st MY_TRC tracer
    
-:kbd:`trcsms_my_trc.F90` is an important file to work on. In the example below, :kbd:`kt` is the timestep, :kbd:`trn` is the storage of tracer value and :kbd:`tra`
+:kbd:`trcsms_my_trc.F90` is an important file to work on. The example below demostrates the way of doing initialization, derivative
+and variable printing. 
 is the "delta" term. `(this block needs more explainations)` 
  
 :file:`trcsms_my_trc.F90`::
@@ -53,8 +54,10 @@ is the "delta" term. `(this block needs more explainations)`
  ! Print surface tracer values to check
  WRITE(*, *) 'trn@Lena estuary', trn(600, 450, 1, jpmyt1)
 
-The example below is the open boundary condition for our group, and another part of it is to preserve tracer values at the boundary to avoid 
-the advection from those "zeros". A typical way is to hold values in the initial condition.
+:kbd:`kt` is the timestep, :kbd:`trn` is the storage of tracer value and :kbd:`tra` 
+
+The example below is the open boundary condition for our group. In order to preserve tracer values at the boundary from
+the impact of advection from "zero grids", you can hold values at the boundary as their initial condition.
 
 :file:`trcnxt.F90`::
 

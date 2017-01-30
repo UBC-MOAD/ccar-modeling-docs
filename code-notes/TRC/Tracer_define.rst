@@ -39,8 +39,7 @@ the first tracer can be indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`.
    INTEGER, PUBLIC, PARAMETER ::   jpmyt2 = jp_lm + 2 !: 1st MY_TRC tracer
    
 :kbd:`trcsms_my_trc.F90` is an important file to work on. The example below demostrates the way of doing initialization, derivative
-and variable printing. 
-is the "delta" term. `(this block needs more explainations)` 
+and variable printing.
  
 :file:`trcsms_my_trc.F90`::
 
@@ -54,7 +53,7 @@ is the "delta" term. `(this block needs more explainations)`
  ! Print surface tracer values to check
  WRITE(*, *) 'trn@Lena estuary', trn(600, 450, 1, jpmyt1)
 
-:kbd:`kt` is the timestep, :kbd:`trn` is the storage of tracer value and :kbd:`tra` 
+:kbd:`kt` is the timestep, :kbd:`trn` is the storage of tracer value and :kbd:`tra` is the "delta" term. `(this block needs more explainations)` 
 
 The example below is the open boundary condition for our group. In order to preserve tracer values at the boundary from
 the impact of advection from "zero grids", you can hold values at the boundary as their initial condition.

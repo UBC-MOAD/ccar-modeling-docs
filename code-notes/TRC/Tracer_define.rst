@@ -23,9 +23,6 @@ An ideal way to edit these files is copying them to :kbd:`MY_SRC` and without ch
 Here some examples are provided, but the real editing depends on the type of tracer. The OPA Tracer Mannuel explained 
 that :kbd:`MY_TRC` is designed for "passive tracers".
 
-:kbd:`par_my_trc.F90`
----------------------
-
 The example below sets user defined tracer as :kbd:`.TRUE.` and claimed two tracers with index :kbd:`jpmyt1` and :kbd:`jpmyt2`. So during the simulation,
 the first tracer can be indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`. 
 
@@ -59,12 +56,9 @@ is the "delta" term. `(this block needs more explainations)`
  ! Print surface tracer values to check
  WRITE(*, *) 'trn@Lena estuary', trn(600, 450, 1, jpmyt1)
 
- :kbd:`trcnxt.F90`
- -----------------
- 
 The example below is the open boundary condition for our group, and another part of it is to preserve tracer values at the boundary to avoid 
 the advection from those "zeros". A typical way is to hold values in the initial condition.
- 
+
 :file:`trcnxt.F90`::
 
  ! Inside the scope of SUBROUTINE trc_nxt( kt ) 
@@ -84,15 +78,11 @@ the advection from those "zeros". A typical way is to hold values in the initial
     
 .. _here: http://ccar-modeling-documentation.readthedocs.io/en/latest/code-notes/TRC/Read_files.html
     
-Edit I/O options and namelist
-=============================
 
-:kbd:`namelist_top` and :kbd:`iodef.xml` should be modified for exporting the simulated tracer values. Both of the files are located in :kbd:`EXP00`. 
+Edit I/O options`
+=================
 
-Edit :kbd:`iodef.xml`
----------------------
-
-:kbd:`iodef.xml` contains in general two parts: (1) the variable definition section and (2) the output section. User-defined tracers should be 
+:kbd:`EXP00/iodef.xml` in general contains two parts: (1) the variable definition section and (2) the output section. User-defined tracers should be 
 defined in (1), ideally the :kbd:`ptrc_T` group. The information of output frequency is in (2), varies from 1-day to 10-year.
 
 :file:`iodef.xml`::
@@ -104,7 +94,7 @@ defined in (1), ideally the :kbd:`ptrc_T` group. The information of output frequ
        <field id="T02" description="My tracer 02" unit="none" />
  </group>
 
- The output definition locates at the bottom of the file.
+The output definition locates at the bottom of the file.
  
 .. code-block:: bash
  <!-- In the output definition scope -->
@@ -124,7 +114,7 @@ defined in (1), ideally the :kbd:`ptrc_T` group. The information of output frequ
  </file_definition>
 
 Edit :kbd:`namelist_top`
-------------------------
+========================
 
 :file:`namelist_top`::
 

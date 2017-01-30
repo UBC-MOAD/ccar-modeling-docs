@@ -13,8 +13,8 @@ An example of it can be found in `here`_.
 
 .. _here: http://ccar-modeling-documentation.readthedocs.io/en/latest/code-notes/TRC/Calculate_emps_ANHA4.html#use-namelist-namdta-dyn
 
-By creating new namelist
-========================
+By creating a new namelist
+==========================
 
 
 .. note::
@@ -51,7 +51,7 @@ Edit :kbd:`MY_TRC` scripts
 The structure and access information can be added in :kbd:`trcini_my_trc.F90` and :kbd:`trcnam_my_trc.F90`. When the variable is read,
 it can be used in :kbd:`trcsms_my_trc.F90`.
 
-In :kbd:`trcini_my_trc.F90`, assign the structure of your file by :kbd:`fld_fill`. 
+In :kbd:`trcini_my_trc.F90`, assign the structure of your file by :kbd:`fld_fill(...)`. 
 
 .. code-block:: fortran
 
@@ -69,7 +69,7 @@ In :kbd:`trcini_my_trc.F90`, assign the structure of your file by :kbd:`fld_fill
  END SUBROUTINE trc_ini_my_trc
 
 
-In :kbd:`trcnam_my_trc.F90`, read the variable through :kbd:`ctl_opn`. The name of the namelist :kbd:`namelist_my_trc`
+In :kbd:`trcnam_my_trc.F90`, read the variable through :kbd:`ctl_opn(...)`. The name of the namelist :kbd:`"namelist_my_trc"`
 should be consistent with the one created in the section above.  
 
 .. code-block:: fortran

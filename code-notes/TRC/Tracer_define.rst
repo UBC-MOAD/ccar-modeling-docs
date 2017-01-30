@@ -37,9 +37,6 @@ the first tracer can be indexed as: :kbd:`trn(lon, lat, dep, jpmyt1)`.
  ! assign an index in trc arrays for each PTS prognostic variables
    INTEGER, PUBLIC, PARAMETER ::   jpmyt1 = jp_lm + 1 !: 1st MY_TRC tracer
    INTEGER, PUBLIC, PARAMETER ::   jpmyt2 = jp_lm + 2 !: 1st MY_TRC tracer
-
-:kbd:`trcsms_my_trc.F90`
-------------------------
    
 :kbd:`trcsms_my_trc.F90` is an important file to work on. In the example below, :kbd:`kt` is the timestep, :kbd:`trn` is the storage of tracer value and :kbd:`tra`
 is the "delta" term. `(this block needs more explainations)` 
@@ -97,6 +94,7 @@ defined in (1), ideally the :kbd:`ptrc_T` group. The information of output frequ
 The output definition locates at the bottom of the file.
  
 .. code-block:: bash
+
  <!-- In the output definition scope -->
  <file_definition >
       <group id="5d" output_freq="432000" output_level="10" enabled=".TRUE.">

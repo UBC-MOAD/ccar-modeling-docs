@@ -5,7 +5,7 @@ Calculate emps with ANHA4 Output
 This section describes the steps to calculate evaporation minus precipitation (emps) term in :kbd:`MY_TRC` with ANHA4 forcing fields.
 This approache was tested with forcing files from ANHA4-EXH001 and EXH005.
 
- The equation for emps is [Schmitt, 1989]:
+The equation for emps is [Schmitt, 1989]:
 
 .. math::
     
@@ -15,8 +15,7 @@ This approache was tested with forcing files from ANHA4-EXH001 and EXH005.
 * :kbd:`isssalin` is Sea surface salinity, defined in icemod files.
 * :kbd:`soce` is 34.7, :kbd:`rday` is 3600*24, they are constants. 
 
-In NEMO 3.4, the "p" part of emps indlues both precipitation and sea-ice melt but does **not** take runoff into account.
-
+In NEMO 3.4, the "p" part of emps indlues both precipitation and sea-ice melt but does **not** take runoff into account. 
 In Kyle's research, emps was calculated for estimating the dilution of tracers (combined with runoff) and the parameterization of isotopic fractionation. 
 By definition, net precipitation minus emps is the sea-ice melt water.
 

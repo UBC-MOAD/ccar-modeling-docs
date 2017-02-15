@@ -47,7 +47,8 @@ Then copy :kbd:`datdyn.F90` from :kbd:`OFF_SRC` and on row 295, add the followin
  emp(:, :) = -1.0*emp(:, :)*34.7/(3600.0*24*(aeiw(:, :)+1.0e-16))
  emps(:,:) = emp(:,:)
  
- **Reference**
+ 
+**Reference**
 
-  - R. W. Schmitt, P. S. Bogden, and C. E. Dorman. Evaporation minus precipitation and density fluxes for
+ - R. W. Schmitt, P. S. Bogden, and C. E. Dorman. Evaporation minus precipitation and density fluxes for
 the North Atlantic. J. Phys. Oceanogr., 19(9):1208–1221, 1989.

@@ -50,5 +50,4 @@ Then copy :kbd:`datdyn.F90` from :kbd:`OFF_SRC` and on row 295, add the followin
  
 **Reference**
 
- - R. W. Schmitt, P. S. Bogden, and C. E. Dorman. Evaporation minus precipitation and density fluxes for
-the North Atlantic. J. Phys. Oceanogr., 19(9):1208–1221, 1989.
+ - R. W. Schmitt, P. S. Bogden, and C. E. Dorman. Evaporation minus precipitation and density fluxes for the North Atlantic. J. Phys. Oceanogr., 19(9):1208–1221, 1989.

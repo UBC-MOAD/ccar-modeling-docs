@@ -17,10 +17,8 @@ This approache was tested with forcing files from ANHA4-EXH001 and EXH005.
 
 In NEMO 3.4, the "p" part of emps indlues both precipitation and sea-ice melt but does **not** take runoff into account.
 
-In Kyle's research, emps was calculated for
-
-* estimating the dilution of tracers (combined with runoff). 
-* the parameterization of isotopic fractionation. By definition, net precipitation minus emps is the sea-ice melt water.
+In Kyle's research, emps was calculated for estimating the dilution of tracers (combined with runoff) and the parameterization of isotopic fractionation. 
+By definition, net precipitation minus emps is the sea-ice melt water.
 
 Use :kbd:`namelist/&namdta_dyn`
 ===============================

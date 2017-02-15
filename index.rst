@@ -15,11 +15,9 @@ It is mostly focused on the UBC modeling component of the GEOTRACES project.
 About the Project
 =================
 
-The Arctic Ocean the smallest and shallowest of the majaor ocean basins in the world but plays a key role in the global hydrological cycle and polar climate.
-
-to come
+The Arctic Ocean the smallest and shallowest of the majaor ocean basins in the world but plays a key role in the global hydrological cycle and polar climate...
  
- .. figure:: _static/Bathy.png
+ .. figure:: static/Bathy.png
  
  
 Contents
@@ -28,10 +26,8 @@ Contents
 .. toctree::
    :maxdepth: 2
 
-   QuickStart/index
-   TRC/index
-   Ariane/index
-   FAQ
+   code-notes/Index
+
 
 .. include:: license_description.txt
  

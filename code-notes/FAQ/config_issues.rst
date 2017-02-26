@@ -1,6 +1,6 @@
-***
+
 NEMO 3.4 Configuration Issues
-***
+*******************************
 
 namelist not terminated
 ------------------------------------
@@ -72,11 +72,10 @@ Copy and replace the namelist, namelist_ice, namelist_ice_lim2, namelist_ice_lim
   
       cd /ocean/$NAME/GEOTRACES/$CODEDIR/NEMOGCM/CONFIG/$case_name/EXP00/
       cp -rf ../../ORCA2_LIM/EXP00/namelist namelist
-	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim2 namelist_ice
-	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim2 namelist_ice_lim2
-	  cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim3 namelist_ice_lim3
-	  
-	  
+      cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim2 namelist_ice
+      cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim2 namelist_ice_lim2
+      cp -rf ../../ORCA2_LIM/EXP00/namelist_ice_lim3 namelist_ice_lim3
+ 
 
 
 	  

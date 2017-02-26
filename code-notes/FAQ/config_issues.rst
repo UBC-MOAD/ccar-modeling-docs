@@ -1,5 +1,5 @@
 ***
-FAQ
+NEMO 3.4 Configuration Issues
 ***
 
 namelist not terminated

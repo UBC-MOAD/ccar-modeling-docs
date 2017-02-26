@@ -5,4 +5,4 @@ FAQ
 .. toctree::
     :maxdepth: 2
 
-    FAQ
+    config_issues

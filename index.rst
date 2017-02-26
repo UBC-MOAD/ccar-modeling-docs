@@ -44,7 +44,7 @@ Contents
    quick_start/index
    code-notes/TRC/index
    code-notes/Ariane/index
-   FAQ
+   code-notes/FAQ/index
 
 
 .. include:: license_description.txt

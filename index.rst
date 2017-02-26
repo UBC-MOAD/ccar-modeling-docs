@@ -16,7 +16,7 @@ About the Project
 =================
 
 The Arctic Ocean as one of the major ocean basins in the high latitudes, is strongly affected by the climate change. 
-The continuous warming trend since 1900s has resulted in significant sea-ice melt, 
+The continuous warming trend since 1970s has resulted in significant sea-ice melt, 
 affecting the hydrological cycle and potentially leading to the state of a "new Arctic". 
 At present, due to the limited understanding of the climate-induced changes in high latitudes, 
 Arctic-GEOTRACES Project, under the support of Climate Change and Atmospheric Research (CCAR), 
@@ -41,10 +41,10 @@ Contents
 
 .. toctree::
    :maxdepth: 2
- 
+   
    quick_start/index
    code-notes/TRC/index
-   code-notes/Ariane/index
+   tracers/index
    code-notes/FAQ/index
 
 

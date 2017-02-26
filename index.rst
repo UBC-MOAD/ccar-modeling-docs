@@ -15,7 +15,22 @@ It is mostly focused on the UBC modeling component of the GEOTRACES project.
 About the Project
 =================
 
-The Arctic Ocean the smallest and shallowest of the majaor ocean basins in the world but plays a key role in the global hydrological cycle and polar climate...
+The Arctic Ocean as one of the major ocean basins in the high latitudes, is strongly implicated by the climate change. 
+The contineous warming trend since 1900s has resulted in significant sea-ice melt, 
+affecting the hydrological cycle and potentially leading to the state of a "new Arctic". 
+At present, due to the limited understanding of the climate-induced changes in high latitudes, 
+Arctic-GEOTRACES Project, under the support of Climate Change and Atmospheric Research (CCAR), 
+provides an opportunity to investigate the interaction of the physical and biogeochemical processes in the Arctic Ocean
+from the prospect of Trace Elements and Isotopes (TEIs).
+
+
+The CCAR modelling team is developming a set of parameterizations under the architecture of NEMO_ 3.4 
+to simulate TEIs offline in the Arctic Ocean and incorporate the result with observations 
+from the two back-to-back GEOTRACES cruies in the Candian side of the Arctic and the Labrador Sea. 
+The modelling efforts is aiming to produce refined estimates of the current state of the TEIs 
+and examine its linkage with other factors in the climate system
+ 
+.. _NEMO: http://www.nemo-ocean.eu/
  
  .. figure:: static/Bathy.png
  
@@ -25,8 +40,11 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-
-   code-notes/Index
+ 
+   quick_start/index
+   code-notes/TRC/index
+   code-notes/Ariane/index
+   FAQ
 
 
 .. include:: license_description.txt

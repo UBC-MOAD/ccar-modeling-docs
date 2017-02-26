@@ -1,6 +1,6 @@
-*******
-FAQ
-*******
+****************
+FAQs and Debugs
+****************
 
 .. toctree::
     :maxdepth: 2
